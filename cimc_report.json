@@ -1,0 +1,127 @@
+{
+    "CIMC1": {
+        "cimc_ip": "172.16.17.211",
+        "managers": {
+            "@odata.id": "/redfish/v1/Managers",
+            "@odata.type": "#ManagerCollection.ManagerCollection",
+            "@odata.context": "/redfish/v1/$metadata#ManagerCollection.ManagerCollection",
+            "Description": "Collection of Managers",
+            "Name": "Manager Collection",
+            "Members": [
+                {
+                    "@odata.id": "/redfish/v1/Managers/CIMC"
+                },
+                {
+                    "@odata.id": "/redfish/v1/Managers/UCSC-M-V5Q50G_FCH274270NG"
+                }
+            ],
+            "Members@odata.count": 2
+        },
+        "ethernet_interfaces": {
+            "@odata.id": "/redfish/v1/Managers/CIMC/EthernetInterfaces/NICs",
+            "@odata.type": "#EthernetInterface.v1_4_1.EthernetInterface",
+            "@odata.context": "/redfish/v1/$metadata#EthernetInterface.EthernetInterface",
+            "Links": {
+                "Chassis": {
+                    "@odata.id": "/redfish/v1/Chassis/1"
+                }
+            },
+            "DHCPv4": {
+                "DHCPEnabled": false,
+                "UseDNSServers": false,
+                "UseGateway": false,
+                "UseDomainName": false,
+                "UseNTPServers": false,
+                "UseStaticRoutes": false
+            },
+            "IPv6StaticAddresses": [
+                {
+                    "Address": "::",
+                    "PrefixLength": 64
+                }
+            ],
+            "DHCPv6": {
+                "UseDomainName": false,
+                "OperatingMode": "Disabled",
+                "UseNTPServers": false,
+                "UseDNSServers": false
+            },
+            "IPv6Addresses": [
+                {
+                    "AddressOrigin": "Static",
+                    "Address": "::",
+                    "PrefixLength": 64
+                },
+                {
+                    "Address": "::",
+                    "AddressOrigin": "LinkLocal"
+                },
+                {
+                    "Address": "::",
+                    "AddressOrigin": "SLAAC"
+                }
+            ],
+            "IPv6DefaultGateway": "::",
+            "IPv6StaticDefaultGateways": [
+                {
+                    "Address": "::"
+                }
+            ],
+            "Oem": {
+                "Cisco": {
+                    "IPv6Enabled": false,
+                    "DynamicDNS": {
+                        "Enabled": true,
+                        "RefreshInterval": 0
+                    },
+                    "NetworkPortProperties": {
+                        "OperationModeFullDuplex": true,
+                        "OperationModePortSpeed": 1024
+                    },
+                    "NICProperties": {
+                        "NICRedundancy": "None",
+                        "NICMode": "Dedicated",
+                        "VICSlot": "None"
+                    }
+                }
+            },
+            "NameServers": [
+                "192.168.175.5",
+                "192.168.175.7"
+            ],
+            "StatelessAddressAutoConfig": {
+                "IPv6AutoConfigEnabled": false,
+                "IPv4AutoConfigEnabled": false
+            },
+            "Id": "NICs",
+            "Name": "Manager Ethernet Interface",
+            "HostName": "sf1-tbs-esxi06-cimc",
+            "Description": "Manager Network Interface",
+            "StaticNameServers": [
+                "192.168.175.5",
+                "192.168.175.7"
+            ],
+            "InterfaceEnabled": true,
+            "PermanentMACAddress": "EC:F4:0C:69:0E:74",
+            "MACAddress": "EC:F4:0C:69:0E:74",
+            "SpeedMbps": 1024,
+            "IPv4Addresses": [
+                {
+                    "Gateway": "172.16.17.1",
+                    "AddressOrigin": "Static",
+                    "Address": "172.16.17.211",
+                    "SubnetMask": "255.255.255.0"
+                }
+            ],
+            "FullDuplex": true,
+            "MaxIPv6StaticAddresses": 1,
+            "VLAN": {
+                "VLANPriority": 0,
+                "VLANEnable": false,
+                "VLANId": 1
+            },
+            "MTUSize": 1500,
+            "AutoNeg": true
+        }
+    }
+}

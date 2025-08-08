@@ -38,22 +38,28 @@ $Username = $Nutanix["NTNX_USERNAME"]
 $Password = $Nutanix["NTNX_PASSWORD"]
 $EnableCompression = $Nutanix["ENABLE_COMPRESSION"]
 Write-Host "Using Nutanix IP: $ClusterIP"
+# Ignore invalid vCenter SSL certificates
+Set-PowerCLIConfiguration -Scope User -InvalidCertificateAction Ignore -Confirm:$false
 
 # API Endpoints
 $BaseURL = "https://" + $ClusterIP + ":9440/api/nutanix/v3"
 Write-Host "Using Nutanix BaseURL: $BaseURL"
-
+[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 $StorageContainersURL = "$BaseURL/storage_containers"
 Write-Host "Using Nutanix API URL: $StorageContainersURL"
 # Ignore SSL Certificate Errors (self-signed certificates)
 [System.Net.ServicePointManager]::ServerCertificateValidationCallback = { $true }
-
+Write-Host "Using Nutanix User: $username"
 # Authenticate with Nutanix API
+$AuthString = "$Username`:$Password"  # Combine username and password with a colon
+$Bytes = [System.Text.Encoding]::UTF8.GetBytes($AuthString)
+$Base64Auth = [Convert]::ToBase64String($Bytes)
 $AuthHeader = @{
     "Authorization" = "Basic " + [Convert]::ToBase64String([Text.Encoding]::ASCII.GetBytes("$Username`:$Password"))
     "Content-Type"  = "application/json"
 }
-Invoke-RestMethod -Uri $BaseURL -Method Get -Headers $AuthHeader -SkipCertificateCheck
+Write-Host "Using Nutanix Header: "Basic $Username`:$Password""
+Invoke-RestMethod -Uri $BaseURL -Method Get -Headers $AuthHeader 
 # Step 1: Get Storage Container ID
 Write-Host "Searching for a container with name starting with 'default-container'..."
 
